@@ -1,0 +1,71 @@
+/* src/components/CharacterCard/CharacterCard.css */
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden; /* Asegura que la imagen respete los bordes redondeados */
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Efecto hover cool para la tarjeta */
+.card-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.card-container img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-info {
+  padding: 1.25rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-info h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text-h);
+  /* Si el nombre es muy largo, le pone puntos suspensivos (...) */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-details strong {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+/* El puntito de color para el estado */
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
