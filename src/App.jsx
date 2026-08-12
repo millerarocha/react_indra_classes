@@ -1,14 +1,14 @@
-// src/App.jsx
-import CharacterList from "./components/CharacterList/CharacterList";
+
+import { CharacterList } from "./components/CharacterList/CharacterList";
+import { Header } from "./components/Header/Header";
+import "./App.css";
 
 function App() {
   return (
-    <main>
-      <h1>Personajes de Rick and Morty</h1>
-      <p>Este es el listado de personajes</p>
-
+    <div className="app-container">
+      <Header />
       <CharacterList />
-    </main>
+    </div>
   );
 }
 

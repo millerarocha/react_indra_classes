@@ -1,71 +1,52 @@
-/* src/components/CharacterCard/CharacterCard.css */
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden; /* Asegura que la imagen respete los bordes redondeados */
-  box-shadow: var(--shadow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.character-card {
+  background-color: #24283b;
+  border-radius: 16px;
+  overflow: hidden; /* Evita que la imagen se salga de las esquinas redondas */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-/* Efecto hover cool para la tarjeta */
-.card-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+.character-card:hover {
+  transform: translateY(-10px);
+  border-color: #97ce4c; /* Borde verde al pasar el mouse */
+  box-shadow: 0 15px 35px rgba(151, 206, 76, 0.3);
 }
 
-.card-container img {
+.card-image {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 280px;
   object-fit: cover;
-  border-bottom: 1px solid var(--border);
 }
 
-.card-info {
-  padding: 1.25rem;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+.card-content {
+  padding: 1.5rem;
 }
 
-.card-info h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  color: var(--text-h);
-  /* Si el nombre es muy largo, le pone puntos suspensivos (...) */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.card-name {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
 }
 
-.card-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.card-details p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--text);
+.card-species {
+  color: #a9b1d6;
+  font-size: 1rem;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.5rem;
+  margin: 0;
 }
 
-.card-details strong {
-  color: var(--text-h);
-  font-weight: 600;
-}
-
-/* El puntito de color para el estado */
-.status-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
+/* El indicador de estado (el circulito) */
+.status-icon {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
+  display: inline-block;
 }
+
+.status-icon.alive { background-color: #55cc44; }
+.status-icon.dead { background-color: #d63d2e; }
+.status-icon.unknown { background-color: #9e9e9e; }
