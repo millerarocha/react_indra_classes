@@ -23,7 +23,8 @@ export function CharacterList({
   onPageChange,
   page,
 }: CharacterListProps) {
-  const { characters, loading, error, resultInfo } = useCharacter(
+  const hasActiveFilters = Boolean(searchTerm.trim() || status || species || gender)
+  const { characters, loading, error, resultInfo, retry } = useCharacter(
     searchTerm,
     status,
     species,
@@ -32,15 +33,15 @@ export function CharacterList({
   )
 
   if (loading) {
-    return <Loader />;
+    return <Loader hasActiveFilters={hasActiveFilters} page={page} />;
   }
 
   if(error) {
-    return <ErrorMessage error={error} />;
+    return <ErrorMessage error={error} onRetry={retry} />;
   }
   
   if (characters.length === 0) {
-    return <EmptyMessage />;
+    return <EmptyMessage hasActiveFilters={hasActiveFilters} />;
   }
 
   return (

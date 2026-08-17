@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { fetchCharacters } from '../services/characterService'
 import type { Character, CharacterApiResponse } from '../types/character'
 
@@ -15,6 +15,11 @@ export function useCharacter(
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [retryCount, setRetryCount] = useState(0)
+
+  const retry = useCallback(() => {
+    setRetryCount((currentRetryCount) => currentRetryCount + 1)
+  }, [])
 
   useEffect(() => {
     const controller = new AbortController()
@@ -59,7 +64,7 @@ export function useCharacter(
     return () => {
       controller.abort()
     }
-  }, [searchTerm, status, species, gender, page])
+  }, [searchTerm, status, species, gender, page, retryCount])
 
-  return { characters, error, loading, resultInfo }
+  return { characters, error, loading, resultInfo, retry }
 }
