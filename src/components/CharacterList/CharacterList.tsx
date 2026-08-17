@@ -6,11 +6,23 @@ import { useCharacter } from '../../hooks/useCharacter'
 
 interface CharacterListProps {
   searchTerm: string
+  species: string
   status: string
+  gender: string
 }
 
-export function CharacterList({ searchTerm, status }: CharacterListProps) {
-  const { characters, loading, error } = useCharacter(searchTerm, status)
+export function CharacterList({
+  searchTerm,
+  status,
+  species,
+  gender,
+}: CharacterListProps) {
+  const { characters, loading, error } = useCharacter(
+    searchTerm,
+    status,
+    species,
+    gender,
+  )
 
   if (loading) {
     return <Loader />;
