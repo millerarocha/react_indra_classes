@@ -4,10 +4,12 @@ import { EmptyMessage } from '../EmptyMessage/EmptyMessage'
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage'
 import { useCharacter } from '../../hooks/useCharacter'
 
+interface CharacterListProps {
+  searchTerm: string
+}
 
-export function CharacterList() {
-
-  const { characters, loading, error } = useCharacter();
+export function CharacterList({ searchTerm }: CharacterListProps) {
+  const { characters, loading, error } = useCharacter(searchTerm)
 
   if (loading) {
     return <Loader />;
