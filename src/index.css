@@ -1,12 +1,13 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+@import 'tailwindcss';
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #1a1a2e; 
+@theme {
+  --animate-shake-error: shake-error 0.4s ease-in-out;
+
+  @keyframes shake-error {
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+  }
 }
