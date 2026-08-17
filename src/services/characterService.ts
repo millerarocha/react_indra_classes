@@ -2,8 +2,9 @@ import type { CharacterApiResponse } from '../types/character'
 
 const API_URL = import.meta.env.VITE_API_URL
 
-export async function getCharactersByName(
+export async function fetchCharacters(
   name: string,
+  status: string,
   signal: AbortSignal,
 ): Promise<CharacterApiResponse | null> {
   const searchParams = new URLSearchParams()
@@ -11,6 +12,10 @@ export async function getCharactersByName(
 
   if (normalizedName) {
     searchParams.set('name', normalizedName)
+  }
+
+  if (status) {
+    searchParams.set('status', status)
   }
 
   const query = searchParams.size ? `?${searchParams.toString()}` : ''

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { getCharactersByName } from '../services/characterService'
+import { fetchCharacters } from '../services/characterService'
 import type { Character } from '../types/character'
 
-export function useCharacter(searchTerm: string) {
+export function useCharacter(searchTerm: string, status: string) {
   const [characters, setCharacters] = useState<Character[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -18,7 +18,7 @@ export function useCharacter(searchTerm: string) {
 
         await new Promise<void>((resolve) => setTimeout(resolve, 1000))
 
-        const data = await getCharactersByName(searchTerm, signal)
+        const data = await fetchCharacters(searchTerm, status, signal)
         setCharacters(data?.results ?? [])
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') {
@@ -41,7 +41,7 @@ export function useCharacter(searchTerm: string) {
     return () => {
       controller.abort()
     }
-  }, [searchTerm])
+  }, [searchTerm, status])
 
   return { characters, loading, error }
 }
