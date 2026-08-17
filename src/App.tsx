@@ -10,11 +10,19 @@ function App() {
   const [species, setSpecies] = useState('')
   const [gender, setGender] = useState('')
 
+  function clearFilters() {
+    setSearchTerm('')
+    setStatus('')
+    setSpecies('')
+    setGender('')
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center bg-[#1a1a2e] px-4 py-12 font-[Nunito,sans-serif]">
       <Header />
       <SearchFilters
         onSearchTermChange={setSearchTerm}
+        onClearFilters={clearFilters}
         onGenderChange={setGender}
         onSpeciesChange={setSpecies}
         onStatusChange={setStatus}

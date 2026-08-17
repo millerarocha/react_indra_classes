@@ -4,6 +4,7 @@ interface SearchFiltersProps {
   species: string
   status: string
   onSearchTermChange: (value: string) => void
+  onClearFilters: () => void
   onGenderChange: (value: string) => void
   onSpeciesChange: (value: string) => void
   onStatusChange: (value: string) => void
@@ -15,12 +16,13 @@ export function SearchFilters({
   species,
   status,
   onSearchTermChange,
+  onClearFilters,
   onGenderChange,
   onSpeciesChange,
   onStatusChange,
 }: SearchFiltersProps) {
   return (
-    <div className="mt-8 grid w-[90%] max-w-[900px] gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="mt-8 grid w-[90%] max-w-[1200px] gap-4 sm:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_2.5rem]">
       <div>
         <label
           className="mb-2 block text-sm font-extrabold uppercase tracking-[1px] text-[#97ce4c]"
@@ -102,6 +104,36 @@ export function SearchFilters({
           <option value="Male">Male</option>
           <option value="unknown">unknown</option>
         </select>
+      </div>
+      <div className="flex items-end">
+        <button
+          aria-label="Limpiar filtros"
+          className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl border-2 border-[#f0e14a] bg-[#24283b] text-[#f0e14a] shadow-[0_8px_16px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:bg-[#f0e14a] hover:text-[#1a1a2e] focus:outline-none focus:ring-4 focus:ring-[#f0e14a]/40"
+          onClick={onClearFilters}
+          title="Limpiar filtros"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            className="size-5"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 5h18l-7 8v5l-4 2v-7L3 5Z"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
+            <path
+              d="m16 16 5 5m0-5-5 5"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="2"
+            />
+          </svg>
+        </button>
       </div>
     </div>
   )
