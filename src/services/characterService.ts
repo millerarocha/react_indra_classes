@@ -7,6 +7,7 @@ export async function fetchCharacters(
   status: string,
   species: string,
   gender: string,
+  page: number,
   signal: AbortSignal,
 ): Promise<CharacterApiResponse | null> {
   const searchParams = new URLSearchParams()
@@ -28,6 +29,8 @@ export async function fetchCharacters(
   if (gender) {
     searchParams.set('gender', gender.toLowerCase())
   }
+
+  searchParams.set('page', page.toString())
 
   const query = searchParams.size ? `?${searchParams.toString()}` : ''
   const response = await fetch(`${API_URL}/character${query}`, { signal })

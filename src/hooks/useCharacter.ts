@@ -7,6 +7,7 @@ export function useCharacter(
   status: string,
   species: string,
   gender: string,
+  page: number,
 ) {
   const [characters, setCharacters] = useState<Character[]>([])
   const [resultInfo, setResultInfo] = useState<CharacterApiResponse['info'] | null>(
@@ -32,6 +33,7 @@ export function useCharacter(
           status,
           species,
           gender,
+          page,
           signal,
         )
         setCharacters(data?.results ?? [])
@@ -57,7 +59,7 @@ export function useCharacter(
     return () => {
       controller.abort()
     }
-  }, [searchTerm, status, species, gender])
+  }, [searchTerm, status, species, gender, page])
 
   return { characters, error, loading, resultInfo }
 }
