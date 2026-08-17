@@ -1,4 +1,4 @@
-import './EmptyMessage.css';
+import './EmptyMessage.css'
 
 export const EmptyMessage = () => {
   return (

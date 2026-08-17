@@ -1,6 +1,11 @@
 import './CharacterCard.css'
+import type { Character } from '../../types/character'
 
-export function CharacterCard({ character }) {
+interface CharacterCardProps {
+  character: Character
+}
+
+export function CharacterCard({ character }: CharacterCardProps) {
   return (
     <article className="character-card">
       <img src={character.image} alt={character.name} className="card-image" />

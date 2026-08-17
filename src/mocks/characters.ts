@@ -1,4 +1,6 @@
-export const CHARACTERS = [
+import type { Character } from '../types/character'
+
+export const CHARACTERS: Character[] = [
     {
       id: 1,
       name: "Rick Sanchez",

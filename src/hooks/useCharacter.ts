@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from 'react'
+import type { Character, CharacterApiResponse } from '../types/character'
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL
 
 
 export function useCharacter() {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [characters, setCharacters] = useState<Character[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const controller = new AbortController();
@@ -18,7 +19,7 @@ export function useCharacter() {
         setError(null);
 
         // 2. Retraso artificial (Timer de 1 segundo) usando Promesas
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise<void>((resolve) => setTimeout(resolve, 1000))
 
         const res = await fetch(`${API_URL}/character`, { signal });
 
@@ -26,10 +27,10 @@ export function useCharacter() {
           throw new Error(`Error HTTP: ${res.status}`);
         }
 
-        const data = await res.json();
+        const data = (await res.json()) as CharacterApiResponse
         setCharacters(data.results);
       } catch (err) {
-        if (err.name === "AbortError") {
+        if (err instanceof DOMException && err.name === 'AbortError') {
           console.log(
             "Petición cancelada: el componente se desmontó antes de terminar."
           );
