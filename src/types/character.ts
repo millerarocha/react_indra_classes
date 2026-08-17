@@ -8,5 +8,9 @@ export interface Character {
 }
 
 export interface CharacterApiResponse {
+  info: {
+    count: number
+    pages: number
+  }
   results: Character[]
 }

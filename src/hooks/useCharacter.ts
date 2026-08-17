@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchCharacters } from '../services/characterService'
-import type { Character } from '../types/character'
+import type { Character, CharacterApiResponse } from '../types/character'
 
 export function useCharacter(
   searchTerm: string,
@@ -9,6 +9,9 @@ export function useCharacter(
   gender: string,
 ) {
   const [characters, setCharacters] = useState<Character[]>([])
+  const [resultInfo, setResultInfo] = useState<CharacterApiResponse['info'] | null>(
+    null,
+  )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -20,6 +23,7 @@ export function useCharacter(
       try {
         setLoading(true)
         setError(null)
+        setResultInfo(null)
 
         await new Promise<void>((resolve) => setTimeout(resolve, 1000))
 
@@ -31,6 +35,7 @@ export function useCharacter(
           signal,
         )
         setCharacters(data?.results ?? [])
+        setResultInfo(data?.info ?? null)
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') {
           return
@@ -54,5 +59,5 @@ export function useCharacter(
     }
   }, [searchTerm, status, species, gender])
 
-  return { characters, loading, error }
+  return { characters, error, loading, resultInfo }
 }
